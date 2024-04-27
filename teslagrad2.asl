@@ -89,7 +89,7 @@ startup
 
     vars.last_scroll_watcher = null;
 
-    vars.scanTarget = new SigScanTarget(-0x20, "000000410000F0410000F0410000A041");
+    vars.scanTarget = new SigScanTarget(-0x20, "000000410000F0410000F0410000A041000000009A99193E0000003FAE47E13D????????0000F042");
     vars.watchers = new MemoryWatcherList();
     vars.destructible_magnet_controller_adress = IntPtr.Zero;
 
