@@ -48,9 +48,11 @@ split
 
     bool elenor_is_dead = false;
     if (current.in_elenor_fight) {
-        elenor_is_dead = vars.watchers["magnet1_health"].Current == 0f && 
+        if (vars.searching_task.IsCompleted) {
+            elenor_is_dead = vars.watchers["magnet1_health"].Current == 0f && 
             vars.watchers["magnet2_health"].Current == 0f && 
             vars.watchers["magnet3_health"].Current == 0f;
+        }
     }
 
     return (
@@ -92,6 +94,23 @@ startup
     vars.scanTarget = new SigScanTarget(-0x20, "000000410000F0410000F0410000A041000000009A99193E0000003FAE47E13D????????0000F042");
     vars.watchers = new MemoryWatcherList();
     vars.destructible_magnet_controller_adress = IntPtr.Zero;
+
+    vars.find_magnet_controller_fn = new Action<Process>((g) => {
+        print("Start Searching Magnet Controller");
+        foreach (var page in g.MemoryPages()) {
+            var scanner = new SignatureScanner(g, page.BaseAddress, (int)page.RegionSize);
+            vars.destructible_magnet_controller_adress = scanner.Scan(vars.scanTarget);
+            if (vars.destructible_magnet_controller_adress != IntPtr.Zero) {
+                break;
+            }
+        }
+
+        vars.watchers.Add(new MemoryWatcher<float>(new DeepPointer(vars.destructible_magnet_controller_adress + 0x18, 0x20, 0x10, 0x90)) { Name = "magnet1_health" });
+        vars.watchers.Add(new MemoryWatcher<float>(new DeepPointer(vars.destructible_magnet_controller_adress + 0x18, 0x28, 0x10, 0x90)) { Name = "magnet2_health" });
+        vars.watchers.Add(new MemoryWatcher<float>(new DeepPointer(vars.destructible_magnet_controller_adress + 0x18, 0x30, 0x10, 0x90)) { Name = "magnet3_health" });
+
+        vars.Log("Finished Searching Magnet Controller : " + vars.destructible_magnet_controller_adress);
+    });
 
     // Settings =============================================================
     settings.Add("skills", true, "Skills");
@@ -141,23 +160,15 @@ update
     }
 
     // Find destructible_magnet_controller when entering Elenor Fight
-    if (current.in_elenor_fight && vars.destructible_magnet_controller_adress == IntPtr.Zero) {
-        foreach (var page in game.MemoryPages()) {
-            var scanner = new SignatureScanner(game, page.BaseAddress, (int)page.RegionSize);
-            vars.destructible_magnet_controller_adress = scanner.Scan(vars.scanTarget);
-            if (vars.destructible_magnet_controller_adress != IntPtr.Zero) {
-                break;
-            }
-        }
-
-        vars.watchers.Add(new MemoryWatcher<float>(new DeepPointer(vars.destructible_magnet_controller_adress + 0x18, 0x20, 0x10, 0x90)) { Name = "magnet1_health" });
-        vars.watchers.Add(new MemoryWatcher<float>(new DeepPointer(vars.destructible_magnet_controller_adress + 0x18, 0x28, 0x10, 0x90)) { Name = "magnet2_health" });
-        vars.watchers.Add(new MemoryWatcher<float>(new DeepPointer(vars.destructible_magnet_controller_adress + 0x18, 0x30, 0x10, 0x90)) { Name = "magnet3_health" });
+    if (current.in_elenor_fight && !old.in_elenor_fight) {
+        vars.searching_task = System.Threading.Tasks.Task.Run(() => {vars.find_magnet_controller_fn(game);});
     }
 
     // Update Magnet watchers in Elenor Fight
     if (current.in_elenor_fight) {
-        vars.watchers.UpdateAll(game);
+        if (vars.searching_task.IsCompleted) {
+            vars.watchers.UpdateAll(game);
+        }
     }
 
     // Clean destructible_magnet_controller element when exiting Elenor fight
