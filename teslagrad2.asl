@@ -26,11 +26,18 @@ state("Teslagrad 2")
     int scroll_count : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x80, 0x18;
 
     bool in_elenor_fight : "GameAssembly.dll", 0x315AE88, 0xB8, 0x69;
+
+    int saveSlotCount : "GameAssembly.dll",  0x316B208, 0xB8, 0x0, 0x10, 0x18
 }
 
 start
 {
     return current.timeSpent == "00:00:00";
+}
+
+reset
+{
+    return current.saveSlotCount < old.saveSlotCount;
 }
 
 split
