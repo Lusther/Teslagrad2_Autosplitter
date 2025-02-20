@@ -1,33 +1,33 @@
 state("Teslagrad 2")
 {
-    bool blink__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x44;
-    bool blue_cloak__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x45;
-    bool waterblink__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x46;
-    bool mjolnir__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x47;
-    bool power_slide__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x48;
-    bool axe__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x49;
-    bool blink_wire_axe__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x4a;
-    bool red_cloak__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x4b;
-    bool omni_blink__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x4c;
-    bool double_jump__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x4d;
+    bool blink__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x44;
+    bool blue_cloak__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x45;
+    bool waterblink__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x46;
+    bool mjolnir__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x47;
+    bool power_slide__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x48;
+    bool axe__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x49;
+    bool blink_wire_axe__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x4a;
+    bool red_cloak__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x4b;
+    bool omni_blink__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x4c;
+    bool double_jump__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x4d;
 
-    bool hulder__bossfight_beaten : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x51;
-    bool moose__bossfight_beaten : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x52;
-    bool fafnir__bossfight_beaten : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x53;
-    bool halvtann__bossfight_beaten : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x54;
-    bool galvan__bossfight_beaten : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x55;
-    bool troll__bossfight_beaten : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x56;
+    bool hulder__bossfight_beaten : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x51;
+    bool moose__bossfight_beaten : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x52;
+    bool fafnir__bossfight_beaten : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x53;
+    bool halvtann__bossfight_beaten : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x54;
+    bool galvan__bossfight_beaten : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x55;
+    bool troll__bossfight_beaten : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x56;
 
-    bool secrets_map__unlocked : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x4e;
+    bool secrets_map__unlocked : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x4e;
 
-    string40 timeSpent : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x28, 0x14;
-    string255 current_scene : "GameAssembly.dll", 0x315AE88, 0xB8, 0x00, 0x28, 0x10, 0x14;
+    string40 timeSpent : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x28, 0x14;
+    string255 current_scene : "GameAssembly.dll", 0x316BB68, 0xB8, 0x00, 0x28, 0x10, 0x14;
 
-    int scroll_count : "GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x80, 0x18;
+    int scroll_count : "GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x80, 0x18;
 
-    bool in_elenor_fight : "GameAssembly.dll", 0x315AE88, 0xB8, 0x69;
+    bool in_elenor_fight : "GameAssembly.dll", 0x316BB68, 0xB8, 0x69;
 
-    int saveSlotCount : "GameAssembly.dll",  0x316B208, 0xB8, 0x0, 0x10, 0x18
+    int saveSlotCount : "GameAssembly.dll",  0x317BFA0, 0xB8, 0x0, 0x10, 0x18
 }
 
 start
@@ -157,7 +157,7 @@ update
 {
     // Move Pointer to last element of scrolls list
     if (current.scroll_count != old.scroll_count) {
-        DeepPointer last_scroll_pointer = new DeepPointer("GameAssembly.dll", 0x3199E90, 0xB8, 0x10, 0x80, 0x10, 0x20 + (current.scroll_count - 1) * 0x4);
+        DeepPointer last_scroll_pointer = new DeepPointer("GameAssembly.dll", 0x31AAD00, 0xB8, 0x10, 0x80, 0x10, 0x20 + (current.scroll_count - 1) * 0x4);
         vars.last_scroll_watcher = new MemoryWatcher<int>(last_scroll_pointer);
     }
 
