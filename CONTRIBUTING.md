@@ -25,6 +25,8 @@ Use the format `type: description` with no body. The description must start with
 
 ### Pull Requests
 
+- All changes go through a PR — direct commits to `main` are not allowed
+- PRs are merged via **squash merge** only
 - PR title follows the same format as commits (`type: title`) and will be used as the squash commit message
 - PR description should clearly describe the changes
 - Each PR should be atomic — one logical change per PR
